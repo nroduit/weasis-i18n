@@ -30,10 +30,23 @@
 			<url>http://dicom.vital-it.ch:8087/nexus/content/repositories/snapshots</url>
 		</snapshotRepository>
 	</distributionManagement>
+	<repositories>
+		<repository>
+			<id>weasis</id>
+			<url>http://dicom.vital-it.ch:8087/nexus/content/groups/public</url>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>weasis</id>
+			<url>http://dicom.vital-it.ch:8087/nexus/content/groups/public</url>
+		</pluginRepository>
+	</pluginRepositories>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<bundle.symbolicName>${project.artifactId}</bundle.symbolicName>
-		<languages.list>en Nicolas Roduit,es Pablo Sau,fr Nicolas Roduit,de Stephan Bender,ja Noriya Yokohama,pt_BR Rafael Ferreira
+		<languages.list>en Nicolas Roduit,es Pablo Sau,fr Nicolas Roduit,de Stephan Bender,ja Noriya Yokohama,pt_BR Rafael
+			Ferreira
 		</languages.list>
 	</properties>
 	<modules>
