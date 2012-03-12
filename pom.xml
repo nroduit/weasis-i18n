@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.weasis</groupId>
+	<artifactId>weasis-i18n</artifactId>
+	<version>1.1.0</version>
+	<packaging>pom</packaging>
+	<name>Weasis Internationalization</name>
+	<licenses>
+		<license>
+			<name>Eclipse Public License v1.0</name>
+			<url>http://www.eclipse.org/legal/epl-v10.html</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+	<scm>
+		<connection>scm:svn:https://weasis.repositoryhosting.com/svn/weasis_weasis-i18n/trunk</connection>
+		<developerConnection>scm:svn:https://weasis.repositoryhosting.com/svn/weasis_weasis-i18n/trunk</developerConnection>
+		<url>https://weasis.repositoryhosting.com/trac/weasis_weasis-i18n/browser/trunk</url>
+	</scm>
+	<!-- Maven server for deploying releases -->
+	<distributionManagement>
+		<repository>
+			<id>releases</id>
+			<url>http://dicom.vital-it.ch:8087/nexus/content/repositories/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<url>http://dicom.vital-it.ch:8087/nexus/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<bundle.symbolicName>${project.artifactId}</bundle.symbolicName>
+		<languages.list>en Nicolas Roduit,es Pablo Sau,fr Nicolas Roduit,de Stephan Bender,ja Noriya Yokohama,pt_BR Rafael Ferreira
+		</languages.list>
+	</properties>
+	<modules>
+		<module>weasis-core-api-i18n</module>
+		<module>weasis-core-ui-i18n</module>
+		<module>weasis-base-ui-i18n</module>
+		<module>weasis-dicom-codec-i18n</module>
+		<module>weasis-dicom-explorer-i18n</module>
+		<module>weasis-dicom-viewer2d-i18n</module>
+		<module>weasis-i18n-dist</module>
+	</modules>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.6</version>
+				<executions>
+					<execution>
+						<id>clean.build.number</id>
+						<inherited>false</inherited>
+						<phase>clean</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<target>
+								<delete file="weasis-i18n-dist/etc/buildNumber.properties" />
+							</target>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<version>2.2.1</version>
+					<configuration>
+						<descriptors>
+							<descriptor>src/assembly/dist.xml</descriptor>
+						</descriptors>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>buildnumber-maven-plugin</artifactId>
+					<version>1.0</version>
+					<executions>
+						<execution>
+							<phase>validate</phase>
+							<goals>
+								<goal>create</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<!-- OSGI version qualifier ::= (alpha|digit|'_'|'-')+ -->
+						<!-- digit ::= [0..9] -->
+						<!-- alpha ::= [a..zA..Z] -->
+						<format>{0,date,yyyy-MM-dd_HH-mm-ss-SSS}</format>
+						<items>
+							<item>timestamp</item>
+						</items>
+					</configuration>
+				</plugin>
+				<plugin>
+					<!-- Download translations from transifex -->
+					<groupId>org.weasis.maven</groupId>
+					<artifactId>maven-transifex-plugin</artifactId>
+					<version>0.7.0</version>
+					<executions>
+						<execution>
+							<id>download</id>
+							<goals>
+								<goal>buildLanguagePacks</goal>
+							</goals>
+							<configuration>
+								<baseURL>http://www.transifex.net/api/2/project/weasis/resource/</baseURL>
+								<outputDirectory>${project.build.directory}/classes/${bundle.package}</outputDirectory>
+								<modules>
+									<module>${project.artifactId}</module>
+								</modules>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>2.3.1</version>
+					<configuration>
+						<finalName>${project.artifactId}</finalName>
+						<archive>
+							<manifestEntries>
+								<Bundle-SymbolicName>${bundle.symbolicName}</Bundle-SymbolicName>
+								<Bundle-ClassPath>.</Bundle-ClassPath>
+								<Bundle-RequiredExecutionEnvironment>JavaSE-1.6</Bundle-RequiredExecutionEnvironment>
+								<Bundle-Name>${project.name}</Bundle-Name>
+								<Bundle-ManifestVersion>2</Bundle-ManifestVersion>
+								<!-- Set bundle version (OSGI format), from Weasis 1.1.0 accept translation fragments -->
+								<Bundle-Version>${project.version}.r${buildNumber}</Bundle-Version>
+								<Fragment-Host>${frament.host}</Fragment-Host>
+							</manifestEntries>
+						</archive>
+					</configuration>
+				</plugin>
+				<plugin>
+					<!-- force to skip deploy, only dist zip is deployed -->
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>2.7</version>
+					<configuration>
+						<skip>true</skip>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>
