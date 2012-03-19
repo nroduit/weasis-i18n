@@ -45,8 +45,9 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<bundle.symbolicName>${project.artifactId}</bundle.symbolicName>
-		<languages.list>en Nicolas Roduit,es Pablo Sau,fr Nicolas Roduit,de Stephan Bender,ja Noriya Yokohama,pt_BR Rafael
-			Ferreira
+		<languages.list>en_US Nicolas Roduit,es Pablo Sau,fr Nicolas Roduit,de Stephan Bender,ja Noriya
+			Yokohama,pt_BR Rafael Ferreira,el Dimitrios Matsaridis, pl_PL Tomasz Pawlicki,ru_RU Александр
+			Козлов
 		</languages.list>
 	</properties>
 	<modules>
