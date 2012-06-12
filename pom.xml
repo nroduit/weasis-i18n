@@ -27,6 +27,7 @@
 		</repository>
 		<snapshotRepository>
 			<id>snapshots</id>
+			<uniqueVersion>false</uniqueVersion>
 			<url>http://dicom.vital-it.ch:8087/nexus/content/repositories/snapshots</url>
 		</snapshotRepository>
 	</distributionManagement>
