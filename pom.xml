@@ -55,6 +55,7 @@
 		<module>weasis-core-api-i18n</module>
 		<module>weasis-core-ui-i18n</module>
 		<module>weasis-base-ui-i18n</module>
+		<module>weasis-base-viewer2d-i18n</module>
 		<module>weasis-dicom-codec-i18n</module>
 		<module>weasis-dicom-explorer-i18n</module>
 		<module>weasis-dicom-viewer2d-i18n</module>
