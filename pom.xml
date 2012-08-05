@@ -46,10 +46,6 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<bundle.symbolicName>${project.artifactId}</bundle.symbolicName>
-		<languages.list>en_US Nicolas Roduit,es Pablo Sau,fr Nicolas Roduit,de Stephan Bender,ja Noriya
-			Yokohama,pt_BR Rafael Ferreira,el Dimitrios Matsaridis, pl_PL Tomasz Pawlicki,ru_RU Александр
-			Козлов - Nikita Volkov, it goofy69, tr Mustafa Çini, zh_CN haiweiwang, pt renebaccarelli
-		</languages.list>
 	</properties>
 	<modules>
 		<module>weasis-core-api-i18n</module>
@@ -77,13 +73,12 @@
 						</goals>
 						<configuration>
 							<target>
-								<delete file="weasis-i18n-dist/etc/buildNumber.properties" />
+								<delete file="weasis-i18n-dist/src/buildNumber.properties" />
 							</target>
 						</configuration>
 					</execution>
 				</executions>
 			</plugin>
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>

@@ -37,7 +37,7 @@
 						</goals>
 						<configuration>
 							<target>
-								<propertyfile file="../weasis-i18n-dist/etc/buildNumber.properties">
+								<propertyfile file="../weasis-i18n-dist/src/buildNumber.properties">
 									<entry key="${project.artifactId}-${project.version}.jar" value="r${buildNumber}" />
 								</propertyfile>
 							</target>

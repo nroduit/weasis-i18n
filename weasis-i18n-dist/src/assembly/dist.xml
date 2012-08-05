@@ -24,7 +24,7 @@
 		<fileSet>
 			<directory>etc</directory>
 			<outputDirectory>/</outputDirectory>
-			<filtered>false</filtered>
+			<filtered>true</filtered>
 		</fileSet>
 	</fileSets>
 </assembly>
