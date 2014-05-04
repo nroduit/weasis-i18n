@@ -15,9 +15,9 @@
 		</license>
 	</licenses>
 	<scm>
-		<connection>scm:svn:https://weasis.repositoryhosting.com/svn/weasis_weasis-i18n/trunk</connection>
-		<developerConnection>scm:svn:https://weasis.repositoryhosting.com/svn/weasis_weasis-i18n/trunk</developerConnection>
-		<url>https://weasis.repositoryhosting.com/trac/weasis_weasis-i18n/browser/trunk</url>
+		<connection>scm:git:git@github.com:nroduit/weasis-i18n.git</connection>
+		<developerConnection>scm:git:git@github.com:nroduit/weasis-i18n.git</developerConnection>
+		<url>https://github.com/nroduit/weasis-i18n</url>
 	</scm>
 	<!-- Maven server for deploying releases -->
 	<distributionManagement>
@@ -46,6 +46,8 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<bundle.symbolicName>${project.artifactId}</bundle.symbolicName>
+		<!-- <transifexURL>http://www.transifex.net/api/2/project/weasis-12-old/resource/</transifexURL> -->
+		<transifexURL>http://www.transifex.net/api/2/project/weasis/resource/</transifexURL>
 	</properties>
 	<modules>
 		<module>weasis-core-api-i18n</module>
@@ -126,7 +128,7 @@
 					<!-- Download translations from transifex -->
 					<groupId>org.weasis.maven</groupId>
 					<artifactId>maven-transifex-plugin</artifactId>
-					<version>0.7.1</version>
+					<version>0.7.2</version>
 					<executions>
 						<execution>
 							<id>download</id>
@@ -134,7 +136,7 @@
 								<goal>buildLanguagePacks</goal>
 							</goals>
 							<configuration>
-								<baseURL>http://www.transifex.net/api/2/project/weasis/resource/</baseURL>
+								<baseURL>${transifexURL}</baseURL>
 								<outputDirectory>${project.build.directory}/classes/${bundle.package}</outputDirectory>
 								<modules>
 									<module>${project.artifactId}</module>
