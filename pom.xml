@@ -130,7 +130,7 @@
 					<!-- Download translations from transifex -->
 					<groupId>org.weasis.maven</groupId>
 					<artifactId>maven-transifex-plugin</artifactId>
-					<version>0.7.4</version>
+					<version>0.7.5</version>
 					<executions>
 						<execution>
 							<id>download</id>
