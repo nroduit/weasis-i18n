@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.weasis</groupId>
+	<artifactId>java-swing-dialogs</artifactId>
+	<version>2.0</version>
+	<name>java-swing-dialogs (Internationalization)</name>
+	<repositories>
+		<repository>
+			<id>weasis</id>
+			<url>http://dicom.vital-it.ch:8087/nexus/content/groups/public</url>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>weasis</id>
+			<url>http://dicom.vital-it.ch:8087/nexus/content/groups/public</url>
+		</pluginRepository>
+	</pluginRepositories>
+	<build>
+		<plugins>
+			<plugin>
+				<!-- Download translations from transifex -->
+				<groupId>org.weasis.maven</groupId>
+				<artifactId>maven-transifex-plugin</artifactId>
+				<version>0.7.6</version>
+				<executions>
+					<execution>
+						<id>download</id>
+						<goals>
+							<goal>buildLanguagePacks</goal>
+						</goals>
+						<configuration>
+							<baseURL>http://www.transifex.net/api/2/project/java-swing-dialogs/resource/</baseURL>
+							<outputDirectory>${project.build.directory}/classes/</outputDirectory>
+							<baseNames>
+								<baseName>basic</baseName>
+								<baseName>synth</baseName>
+							</baseNames>
+							<modules>
+								<module>basic</module>
+								<module>synth</module>
+							</modules>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
