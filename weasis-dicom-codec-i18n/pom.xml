@@ -12,7 +12,7 @@
 	<name>DICOM Codec (Internationalization)</name>
 	<properties>
 		<bundle.package>org/weasis/dicom/codec</bundle.package>
-		<frament.host>weasis-dicom-codec;bundle-version="0.5.4"</frament.host>
+		<frament.host>weasis-dicom-codec;bundle-version="${project.version}"</frament.host>
 	</properties>
 
 	<build>

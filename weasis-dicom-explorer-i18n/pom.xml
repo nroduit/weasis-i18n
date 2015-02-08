@@ -12,7 +12,7 @@
 	<name>DICOM Explorer (Internationalization)</name>
 	<properties>
 		<bundle.package>org/weasis/dicom/explorer</bundle.package>
-		<frament.host>weasis-dicom-explorer;bundle-version="0.5.4"</frament.host>
+		<frament.host>weasis-dicom-explorer;bundle-version="${project.version}"</frament.host>
 	</properties>
 
 	<build>

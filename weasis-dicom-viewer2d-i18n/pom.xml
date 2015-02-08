@@ -12,7 +12,7 @@
 	<name>2D DICOM Viewer (Internationalization)</name>
 	<properties>
 		<bundle.package>org/weasis/dicom/viewer2d</bundle.package>
-		<frament.host>weasis-dicom-viewer2d;bundle-version="0.5.4"</frament.host>
+		<frament.host>weasis-dicom-viewer2d;bundle-version="${project.version}"</frament.host>
 	</properties>
 
 	<build>

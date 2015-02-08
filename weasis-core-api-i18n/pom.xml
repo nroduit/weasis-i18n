@@ -12,7 +12,7 @@
 	<name>Weasis Core API (Internationalization)</name>
 	<properties>
 		<bundle.package>org/weasis/core/api</bundle.package>
-		<frament.host>weasis-core-api;bundle-version="0.5.4"</frament.host>
+		<frament.host>weasis-core-api;bundle-version="${project.version}"</frament.host>
 	</properties>
 
 	<build>

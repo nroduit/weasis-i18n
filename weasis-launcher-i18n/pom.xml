@@ -12,7 +12,7 @@
 	<name>Weasis Launcher (Internationalization)</name>
 	<properties>
 		<bundle.package>org/weasis/launcher</bundle.package>
-		<frament.host>weasis-launcher;bundle-version="0.5.4"</frament.host>
+		<frament.host>weasis-launcher;bundle-version="${project.version}"</frament.host>
 	</properties>
 	<build>
 		<plugins>

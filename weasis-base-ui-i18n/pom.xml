@@ -12,7 +12,7 @@
 	<name>Weasis Base UI (Internationalization)</name>
 	<properties>
 		<bundle.package>org/weasis/base/ui</bundle.package>
-		<frament.host>weasis-base-ui;bundle-version="0.5.4"</frament.host>
+		<frament.host>weasis-base-ui;bundle-version="${project.version}"</frament.host>
 	</properties>
 	<build>
 		<plugins>
