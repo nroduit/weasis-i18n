@@ -54,6 +54,8 @@
 		<module>weasis-core-ui-i18n</module>
 		<module>weasis-base-ui-i18n</module>
 		<module>weasis-base-viewer2d-i18n</module>
+		<module>weasis-dicom-au-i18n</module>
+		<module>weasis-dicom-sr-i18n</module>
 		<module>weasis-dicom-codec-i18n</module>
 		<module>weasis-dicom-explorer-i18n</module>
 		<module>weasis-dicom-viewer2d-i18n</module>
@@ -160,7 +162,8 @@
 								<Bundle-RequiredExecutionEnvironment>JavaSE-1.6</Bundle-RequiredExecutionEnvironment>
 								<Bundle-Name>${project.name}</Bundle-Name>
 								<Bundle-ManifestVersion>2</Bundle-ManifestVersion>
-								<!-- Set bundle version (OSGI format), from Weasis 2.0.0 accept translation fragments -->
+								<!-- Set bundle version (OSGI format), from Weasis 2.0.0 accept translation 
+									fragments -->
 								<Bundle-Version>${project.version}.r${buildNumber}</Bundle-Version>
 								<Fragment-Host>${frament.host}</Fragment-Host>
 							</manifestEntries>
