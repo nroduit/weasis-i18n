@@ -19,30 +19,14 @@
 		<developerConnection>scm:git:git@github.com:nroduit/weasis-i18n.git</developerConnection>
 		<url>https://github.com/nroduit/weasis-i18n</url>
 	</scm>
-	<!-- Maven server for deploying releases -->
-	<distributionManagement>
-		<repository>
-			<id>releases</id>
-			<url>http://dicom.vital-it.ch:8087/nexus/content/repositories/releases</url>
-		</repository>
-		<snapshotRepository>
-			<id>snapshots</id>
-			<uniqueVersion>false</uniqueVersion>
-			<url>http://dicom.vital-it.ch:8087/nexus/content/repositories/snapshots</url>
-		</snapshotRepository>
-	</distributionManagement>
-	<repositories>
-		<repository>
-			<id>weasis</id>
-			<url>http://dicom.vital-it.ch:8087/nexus/content/groups/public</url>
-		</repository>
-	</repositories>
+
 	<pluginRepositories>
 		<pluginRepository>
-			<id>weasis</id>
-			<url>http://dicom.vital-it.ch:8087/nexus/content/groups/public</url>
+			<id>mvn-repo-master</id>
+			<url>https://raw.github.com/nroduit/mvn-repo/master/</url>
 		</pluginRepository>
 	</pluginRepositories>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<bundle.symbolicName>${project.artifactId}</bundle.symbolicName>

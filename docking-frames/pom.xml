@@ -8,16 +8,10 @@
 	<version>2.0</version>
 	<name>docking-frames (Internationalization)</name>
 
-	<repositories>
-		<repository>
-			<id>weasis</id>
-			<url>http://dicom.vital-it.ch:8087/nexus/content/groups/public</url>
-		</repository>
-	</repositories>
 	<pluginRepositories>
 		<pluginRepository>
-			<id>weasis</id>
-			<url>http://dicom.vital-it.ch:8087/nexus/content/groups/public</url>
+			<id>mvn-repo-master</id>
+			<url>https://raw.github.com/nroduit/mvn-repo/master/</url>
 		</pluginRepository>
 	</pluginRepositories>
 	<build>
