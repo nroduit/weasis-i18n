@@ -40,6 +40,8 @@
 		<module>weasis-base-viewer2d-i18n</module>
 		<module>weasis-dicom-au-i18n</module>
 		<module>weasis-dicom-sr-i18n</module>
+		<module>weasis-dicom-send-i18n</module>
+		<module>weasis-dicom-qr-i18n</module>
 		<module>weasis-dicom-codec-i18n</module>
 		<module>weasis-dicom-explorer-i18n</module>
 		<module>weasis-dicom-viewer2d-i18n</module>
@@ -72,8 +74,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>2.3.2</version>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
+					<source>1.7</source>
+					<target>1.7</target>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -143,7 +145,7 @@
 							<manifestEntries>
 								<Bundle-SymbolicName>${bundle.symbolicName}</Bundle-SymbolicName>
 								<Bundle-ClassPath>.</Bundle-ClassPath>
-								<Bundle-RequiredExecutionEnvironment>JavaSE-1.6</Bundle-RequiredExecutionEnvironment>
+								<Bundle-RequiredExecutionEnvironment>JavaSE-1.7</Bundle-RequiredExecutionEnvironment>
 								<Bundle-Name>${project.name}</Bundle-Name>
 								<Bundle-ManifestVersion>2</Bundle-ManifestVersion>
 								<!-- Set bundle version (OSGI format), from Weasis 2.0.0 accept translation 
