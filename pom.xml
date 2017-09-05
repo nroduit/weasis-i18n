@@ -30,8 +30,8 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<bundle.symbolicName>${project.artifactId}</bundle.symbolicName>
-		<!-- <transifexURL>http://www.transifex.net/api/2/project/weasis-12-old/resource/</transifexURL> -->
-		<transifexURL>http://www.transifex.net/api/2/project/weasis/resource/</transifexURL>
+		<!-- <transifexURL>https://www.transifex.com/api/2/project/weasis-12-old/resource/</transifexURL> -->
+		<transifexURL>https://www.transifex.com/api/2/project/weasis/resource/</transifexURL>
 	</properties>
 	<modules>
 		<module>weasis-core-api-i18n</module>
