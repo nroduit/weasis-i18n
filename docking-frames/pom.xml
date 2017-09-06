@@ -28,7 +28,7 @@
 							<goal>buildLanguagePacks</goal>
 						</goals>
 						<configuration>
-							<baseURL>http://www.transifex.net/api/2/project/docking-frames/resource/</baseURL>
+							<baseURL>https://www.transifex.com/api/2/project/docking-frames/resource/</baseURL>
 							<outputDirectory>${project.build.directory}/classes/</outputDirectory>
 							<baseNames>
 								<baseName>common</baseName>
