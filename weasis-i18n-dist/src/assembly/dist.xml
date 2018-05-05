@@ -14,7 +14,7 @@
 			<!-- Now, select which projects to include in this module-set. -->
 
 			<binaries>
-				<outputDirectory>/</outputDirectory>
+				<outputDirectory></outputDirectory>
 				<unpack>false</unpack>
 			</binaries>
 		</moduleSet>
@@ -22,7 +22,7 @@
 	<fileSets>
 		<fileSet>
 			<directory>etc</directory>
-			<outputDirectory>/</outputDirectory>
+			<outputDirectory></outputDirectory>
 			<filtered>true</filtered>
 			<excludes>
 				<exclude>.gitignore</exclude>

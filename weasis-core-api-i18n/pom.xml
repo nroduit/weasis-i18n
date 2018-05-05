@@ -23,7 +23,7 @@
 			</plugin>
 			<plugin>
 				<groupId>org.weasis.maven</groupId>
-				<artifactId>maven-transifex-plugin</artifactId>
+				<artifactId>build-transifex-plugin</artifactId>
 				<executions>
 					<execution>
 						<id>download</id>
