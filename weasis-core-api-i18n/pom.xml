@@ -4,7 +4,7 @@
 	<parent>
 		<artifactId>weasis-i18n</artifactId>
 		<groupId>org.weasis</groupId>
-		<version>2.0.0</version>
+		<version>3.0.0</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.weasis.core</groupId>
@@ -47,12 +47,16 @@
 						<configuration>
 							<target>
 								<propertyfile file="../weasis-i18n-dist/src/buildNumber.properties">
-									<entry key="${project.artifactId}-${project.version}.jar" value="r${buildNumber}" />
+									<entry key="${project.artifactId}.jar.xz" value="r${buildNumber}" />
 								</propertyfile>
 							</target>
 						</configuration>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.weasis.maven</groupId>
+				<artifactId>build-xz-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>

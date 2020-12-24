@@ -12,17 +12,24 @@
 			<!-- Enable access to all projects in the current multimodule build! -->
 			<useAllReactorProjects>true</useAllReactorProjects>
 			<!-- Now, select which projects to include in this module-set. -->
-
-			<binaries>
-				<outputDirectory></outputDirectory>
-				<unpack>false</unpack>
-			</binaries>
+			<sources>
+				<includeModuleDirectory>false</includeModuleDirectory>
+				<fileSets>
+					<fileSet>
+						<directory>${project.build.directory}</directory>
+						<outputDirectory/>
+						<includes>
+							<include>*.xz</include>
+						</includes>
+					</fileSet>
+				</fileSets>
+			</sources>
 		</moduleSet>
 	</moduleSets>
 	<fileSets>
 		<fileSet>
 			<directory>etc</directory>
-			<outputDirectory></outputDirectory>
+			<outputDirectory/>
 			<filtered>true</filtered>
 			<excludes>
 				<exclude>.gitignore</exclude>

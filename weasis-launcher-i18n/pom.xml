@@ -4,10 +4,9 @@
 	<parent>
 		<artifactId>weasis-i18n</artifactId>
 		<groupId>org.weasis</groupId>
-		<version>2.0.0</version>
+		<version>3.0.0</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.weasis</groupId>
 	<artifactId>weasis-launcher-i18n</artifactId>
 	<name>Weasis Launcher (Internationalization)</name>
 	<properties>
