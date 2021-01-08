@@ -15,8 +15,8 @@
 		</license>
 	</licenses>
 	<scm>
-		<connection>scm:git:git@github.com:nroduit/weasis-i18n.git</connection>
-		<developerConnection>scm:git:git@github.com:nroduit/weasis-i18n.git</developerConnection>
+		<connection>scm:git:https://github.com/nroduit/weasis-i18n.git</connection>
+		<developerConnection>scm:git:https://github.com/nroduit/weasis-i18n.git</developerConnection>
 		<url>https://github.com/nroduit/weasis-i18n</url>
 	</scm>
 
@@ -59,6 +59,7 @@
 	</pluginRepositories>
 
 	<properties>
+		<dollarSign>$</dollarSign>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<bundle.symbolicName>${project.artifactId}</bundle.symbolicName>
 		<!-- <transifexURL>https://www.transifex.com/api/2/project/weasis-12-old/resource/</transifexURL> -->

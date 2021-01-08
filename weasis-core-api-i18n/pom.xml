@@ -47,7 +47,7 @@
 						<configuration>
 							<target>
 								<propertyfile file="../weasis-i18n-dist/src/buildNumber.properties">
-									<entry key="${project.artifactId}.jar.xz" value="r${buildNumber}" />
+									<entry key="${project.artifactId}${dollarSign}{output.pkg}" value="r${buildNumber}" />
 								</propertyfile>
 							</target>
 						</configuration>
