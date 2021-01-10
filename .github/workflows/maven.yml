@@ -31,7 +31,7 @@ jobs:
           repository: nroduit/mvn-repo
           path: mvn-repo
       - name: Commit the maven packages
-      - run: |
+        run: |
           cd mvn-repo
           declare -a PKGFOLDERS=("org/weasis/weasis-i18n-dist/3.0.0-SNAPSHOT" "org/weasis/weasis-i18n-dist/2.0.0-SNAPSHOT")
           for PKGFOLDER in ${PKGFOLDERS[@]}; do
