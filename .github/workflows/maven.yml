@@ -35,9 +35,9 @@ jobs:
           cd mvn-repo
           declare -a PKGFOLDERS=("org/weasis/weasis-i18n-dist/3.0.0-SNAPSHOT" "org/weasis/weasis-i18n-dist/2.0.0-SNAPSHOT")
           for PKGFOLDER in ${PKGFOLDERS[@]}; do
-            cp -v ~/.m2/${PKGFOLDER}/weasis-*.war ${PKGFOLDER}
-            cp -v ~/.m2/${PKGFOLDER}/weasis-*.war ${PKGFOLDER}/weasis-i18n.war
-            cp -v ~/.m2/${PKGFOLDER}/weasis-*.zip ${PKGFOLDER}
+            cp -v ~/.m2/repository/${PKGFOLDER}/weasis-*.war ${PKGFOLDER}
+            cp -v ~/.m2/repository/${PKGFOLDER}/weasis-*.war ${PKGFOLDER}/weasis-i18n.war
+            cp -v ~/.m2/repository/${PKGFOLDER}/weasis-*.zip ${PKGFOLDER}
             IFS=$'\n'
             paths=($(find ${PKGFOLDER} -name "*.war" -o -name "*.zip"))
             unset IFS
