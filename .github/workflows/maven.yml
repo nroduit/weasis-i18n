@@ -30,6 +30,7 @@ jobs:
         with:
           repository: nroduit/mvn-repo
           path: mvn-repo
+          token: ${{ secrets.API_TOKEN_GITHUB }}
       - name: Commit the maven packages
         run: |
           cd mvn-repo
