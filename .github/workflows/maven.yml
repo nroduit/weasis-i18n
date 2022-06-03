@@ -23,7 +23,7 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
       - name: Build weasis-i18n-dist
         run: |
-          mvn -B clean install -Dtransifex.credential=${{ secrets.TRANSIFEX_USER }}:${{ secrets.TRANSIFEX_PASSWORD }} -f main
+          mvn -B clean install -Dtransifex.token=${{ secrets.TRANSIFEX_TOKEN }} -f main
           mvn -B clean install -f main/weasis-i18n-dist-old
       - name: Checkout mvn-repo repository
         uses: actions/checkout@v2

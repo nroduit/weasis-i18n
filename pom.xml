@@ -62,8 +62,6 @@
 		<dollarSign>$</dollarSign>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<bundle.symbolicName>${project.artifactId}</bundle.symbolicName>
-		<!-- <transifexURL>https://www.transifex.com/api/2/project/weasis-12-old/resource/</transifexURL> -->
-		<transifexURL>https://www.transifex.com/api/2/project/weasis/resource/</transifexURL>
 	</properties>
 	<modules>
 		<module>weasis-core-api-i18n</module>
@@ -109,7 +107,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.1</version>
+				<version>3.9.0</version>
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
@@ -120,7 +118,7 @@
 			<plugins>
 				<plugin>
 					<artifactId>maven-assembly-plugin</artifactId>
-					<version>3.2.0</version>
+					<version>3.3.0</version>
 					<configuration>
 						<descriptors>
 							<descriptor>src/assembly/dist.xml</descriptor>
@@ -155,7 +153,7 @@
 					<!-- Download translations from transifex -->
 					<groupId>org.weasis.maven</groupId>
 					<artifactId>build-transifex-plugin</artifactId>
-					<version>1.0.1</version>
+					<version>1.1.0</version>
 					<executions>
 						<execution>
 							<id>download</id>
@@ -163,7 +161,9 @@
 								<goal>buildLanguagePacks</goal>
 							</goals>
 							<configuration>
-								<baseURL>${transifexURL}</baseURL>
+								<baseURL>https://rest.api.transifex.com/</baseURL>
+								<organization>weasis</organization>
+								<project>weasis</project>
 								<outputDirectory>${project.build.directory}/classes/${bundle.package}</outputDirectory>
 								<modules>
 									<module>${project.artifactId}</module>

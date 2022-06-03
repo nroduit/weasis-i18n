@@ -20,7 +20,7 @@
 				<!-- Download translations from transifex -->
 				<groupId>org.weasis.maven</groupId>
 				<artifactId>build-transifex-plugin</artifactId>
-				<version>1.0.0</version>
+				<version>1.1.0</version>
 				<executions>
 					<execution>
 						<id>download</id>
@@ -28,7 +28,9 @@
 							<goal>buildLanguagePacks</goal>
 						</goals>
 						<configuration>
-							<baseURL>https://www.transifex.com/api/2/project/java-swing-dialogs/resource/</baseURL>
+							<baseURL>https://rest.api.transifex.com/</baseURL>
+							<organization>weasis</organization>
+							<project>java-swing-dialogs</project>
 							<outputDirectory>${project.build.directory}/classes/</outputDirectory>
 							<baseNames>
 								<baseName>basic</baseName>
