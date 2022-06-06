@@ -13,11 +13,11 @@ Packages are built automatically once a day and can be downloaded below or from 
 * weasis-i18n-dist-2.0.0-SNAPSHOT [zip](https://github.com/nroduit/mvn-repo/raw/master/org/weasis/weasis-i18n-dist/2.0.0-SNAPSHOT/weasis-i18n-dist-2.0.0-SNAPSHOT.zip) or [war](https://github.com/nroduit/mvn-repo/raw/master/org/weasis/weasis-i18n-dist/2.0.0-SNAPSHOT/weasis-i18n.war): is compatible from Weasis 1.1.x to 3.6.2
 * weasis-i18n-dist-3.0.0-SNAPSHOT [zip](https://github.com/nroduit/mvn-repo/raw/master/org/weasis/weasis-i18n-dist/3.0.0-SNAPSHOT/weasis-i18n-dist-3.0.0-SNAPSHOT.zip) or [war](https://github.com/nroduit/mvn-repo/raw/master/org/weasis/weasis-i18n-dist/3.0.0-SNAPSHOT/weasis-i18n.war): is compatible with Weasis 3.7.0 and upper (note that packages since April 1, 2022 are compatible with weasis 4 and higher)
 
-
+See [how to apply the translations to Weasis](http://localhost:1313/en/getting-started/translating/#apply-the-translations).
 
 ## Build weasis-dicom-tools ##
 
-Prerequisites: JDK 8, Maven 3 and an account at [Transifex](https://www.transifex.com/signin)
+Prerequisites: JDK 11, Maven 3 and an account at [Transifex](https://www.transifex.com/signin).
 
 See the [internationalization page](https://nroduit.github.io/en/getting-started/translating/) for
 building this project.
