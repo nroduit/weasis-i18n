@@ -15,7 +15,7 @@ Packages are built automatically once a day and can be downloaded below or from 
 
 See [how to apply the translations to Weasis](http://localhost:1313/en/getting-started/translating/#apply-the-translations).
 
-## Build weasis-dicom-tools ##
+## Build weasis-i18n ##
 
 Prerequisites: JDK 11, Maven 3 and an account at [Transifex](https://www.transifex.com/signin).
 
