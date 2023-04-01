@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.weasis</groupId>
 	<artifactId>weasis-i18n</artifactId>
-	<version>3.1.0</version>
+	<version>3.0.0</version>
 	<packaging>pom</packaging>
 	<name>Weasis Internationalization</name>
 
@@ -37,6 +37,9 @@
 	<repositories>
 		<repository>
 			<id>central</id>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
 			<name>Central Repository</name>
 			<url>https://repo.maven.apache.org/maven2</url>
 		</repository>
@@ -60,12 +63,6 @@
 			<url>https://repo.maven.apache.org/maven2</url>
 		</pluginRepository>
 		<pluginRepository>
-			<releases>
-				<updatePolicy>never</updatePolicy>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
 			<id>mvn-repo-master</id>
 			<url>https://raw.github.com/nroduit/mvn-repo/master/</url>
 		</pluginRepository>
