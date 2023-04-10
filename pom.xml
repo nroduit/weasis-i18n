@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.weasis</groupId>
 	<artifactId>weasis-i18n</artifactId>
-	<version>3.0.0</version>
+	<version>4.0.0</version>
 	<packaging>pom</packaging>
 	<name>Weasis Internationalization</name>
 
@@ -69,19 +69,20 @@
 	</pluginRepositories>
 
 	<modules>
-		<module>weasis-core-api-i18n</module>
-		<module>weasis-core-ui-i18n</module>
+		<module>weasis-core-i18n</module>
 		<module>weasis-base-explorer-i18n</module>
 		<module>weasis-base-ui-i18n</module>
 		<module>weasis-base-viewer2d-i18n</module>
 		<module>weasis-dicom-au-i18n</module>
-		<module>weasis-dicom-sr-i18n</module>
-<!-- 		<module>weasis-dicom-rt-i18n</module> -->
-		<module>weasis-dicom-send-i18n</module>
-		<module>weasis-dicom-qr-i18n</module>
 		<module>weasis-dicom-codec-i18n</module>
 		<module>weasis-dicom-explorer-i18n</module>
+		<module>weasis-dicom-isowriter-i18n</module>
+		<module>weasis-dicom-qr-i18n</module>
+		<module>weasis-dicom-rt-i18n</module>
+		<module>weasis-dicom-send-i18n</module>
+		<module>weasis-dicom-sr-i18n</module>
 		<module>weasis-dicom-viewer2d-i18n</module>
+		<module>weasis-dicom-viewer3d-i18n</module>
 		<module>weasis-dicom-wave-i18n</module>
 		<module>weasis-acquire-editor-i18n</module>
 		<module>weasis-acquire-explorer-i18n</module>

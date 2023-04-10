@@ -4,15 +4,15 @@
 	<parent>
 		<artifactId>weasis-i18n</artifactId>
 		<groupId>org.weasis</groupId>
-		<version>3.0.0</version>
+		<version>4.0.0</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.weasis.core</groupId>
-	<artifactId>weasis-core-api-i18n</artifactId>
-	<name>Weasis Core API (Internationalization)</name>
+	<groupId>org.weasis.dicom</groupId>
+	<artifactId>weasis-dicom-viewer3d-i18n</artifactId>
+	<name>3D DICOM Viewer (Internationalization)</name>
 	<properties>
-		<bundle.package>org/weasis/core/api</bundle.package>
-		<frament.host>weasis-core-api;bundle-version="${project.version}"</frament.host>
+		<bundle.package>org/weasis/dicom/viewer3d</bundle.package>
+		<frament.host>weasis-dicom-viewer3d;bundle-version="${project.version}"</frament.host>
 	</properties>
 
 	<build>
@@ -24,15 +24,6 @@
 			<plugin>
 				<groupId>org.weasis.maven</groupId>
 				<artifactId>build-transifex-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>download</id>
-						<configuration>
-							<!-- Write the list of available languages -->
-							<buildLanguagesFile>../weasis-i18n-dist/src/buildNumber.properties</buildLanguagesFile>
-						</configuration>
-					</execution>
-				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

@@ -7,13 +7,14 @@
 		<version>4.0.0</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.weasis.acquire</groupId>
-	<artifactId>weasis-acquire-explorer-i18n</artifactId>
-	<name>Weasis Acquire Explorer (Internationalization)</name>
+	<groupId>org.weasis.dicom</groupId>
+	<artifactId>weasis-dicom-isowriter-i18n</artifactId>
+	<name>Export ISO image for DICOM CD (Internationalization)</name>
 	<properties>
-		<bundle.package>org/weasis/acquire/explorer</bundle.package>
-		<frament.host>weasis-acquire-explorer;bundle-version="${project.version}"</frament.host>
+		<bundle.package>org/weasis/dicom/isowriter</bundle.package>
+		<frament.host>weasis-dicom-isowriter;bundle-version="${project.version}"</frament.host>
 	</properties>
+
 	<build>
 		<plugins>
 			<plugin>
