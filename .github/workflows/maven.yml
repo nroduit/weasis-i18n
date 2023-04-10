@@ -31,6 +31,7 @@ jobs:
           cd mvn-repo
           declare -a PKGFOLDERS=("org/weasis/weasis-i18n-dist/4.0.0-SNAPSHOT")
           for PKGFOLDER in ${PKGFOLDERS[@]}; do
+            mkdir -p ${PKGFOLDER}
             cp -v ~/.m2/repository/${PKGFOLDER}/weasis-*.war ${PKGFOLDER}
             cp -v ~/.m2/repository/${PKGFOLDER}/weasis-*.war ${PKGFOLDER}/weasis-i18n.war
             cp -v ~/.m2/repository/${PKGFOLDER}/weasis-*.zip ${PKGFOLDER}

@@ -11,7 +11,7 @@ you to add translations without recompiling Weasis.
 Packages are built automatically once a day and can be downloaded below or from a maven dependency.
 * weasis-i18n-dist-4.0.0-SNAPSHOT [zip](https://github.com/nroduit/mvn-repo/raw/master/org/weasis/weasis-i18n-dist/4.0.0-SNAPSHOT/weasis-i18n-dist-4.0.0-SNAPSHOT.zip) or [war](https://github.com/nroduit/mvn-repo/raw/master/org/weasis/weasis-i18n-dist/4.0.0-SNAPSHOT/weasis-i18n.war): is compatible with Weasis 4.1.0 and upper
 
-Packages for old version (no longer updated)
+Packages for old Weasis versions (no longer updated)
 * weasis-i18n-dist-3.0.0-SNAPSHOT [zip](https://github.com/nroduit/mvn-repo/raw/master/org/weasis/weasis-i18n-dist/3.0.0-SNAPSHOT/weasis-i18n-dist-3.0.0-SNAPSHOT.zip) or [war](https://github.com/nroduit/mvn-repo/raw/master/org/weasis/weasis-i18n-dist/3.0.0-SNAPSHOT/weasis-i18n.war): is compatible with Weasis 3.7.0 to 4.0.3
 * weasis-i18n-dist-2.0.0-SNAPSHOT [zip](https://github.com/nroduit/mvn-repo/raw/master/org/weasis/weasis-i18n-dist/2.0.0-SNAPSHOT/weasis-i18n-dist-2.0.0-SNAPSHOT.zip) or [war](https://github.com/nroduit/mvn-repo/raw/master/org/weasis/weasis-i18n-dist/2.0.0-SNAPSHOT/weasis-i18n.war): is compatible from Weasis 1.1.x to 3.6.2
 
