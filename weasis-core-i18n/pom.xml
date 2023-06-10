@@ -24,6 +24,14 @@
 			<plugin>
 				<groupId>org.weasis.maven</groupId>
 				<artifactId>build-transifex-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>download</id>
+						<configuration>
+							<buildLanguagesFile>../weasis-i18n-dist/src/buildNumber.properties</buildLanguagesFile>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
