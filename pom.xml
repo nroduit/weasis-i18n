@@ -9,7 +9,7 @@
 	<name>Weasis Internationalization</name>
 
 	<properties>
-		<java-version>8</java-version>
+		<java-version>11</java-version>
 		<jdk-version>11</jdk-version>
 		<enforcer.jdk-version>[${jdk-version},)</enforcer.jdk-version>
 		<enforcer.maven-version>[3.5.3,)</enforcer.maven-version>
@@ -138,8 +138,7 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.11.0</version>
 				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
+					<release>${java-version}</release>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -182,7 +181,7 @@
 					<!-- Download translations from transifex -->
 					<groupId>org.weasis.maven</groupId>
 					<artifactId>build-transifex-plugin</artifactId>
-					<version>1.2.0</version>
+					<version>1.2.1</version>
 					<executions>
 						<execution>
 							<id>download</id>
