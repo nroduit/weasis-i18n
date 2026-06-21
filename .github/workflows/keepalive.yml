@@ -1,0 +1,42 @@
+name: Keepalive
+
+# GitHub automatically disables scheduled (cron) workflows after 60 days with no
+# commits to the repository. Translations here come from Transifex and the build
+# publishes to a separate repo, so this repo can stay idle long enough for the
+# nightly build's cron to be disabled. This workflow pushes an empty commit when
+# the repo has been idle for too long, resetting the 60-day timer for every
+# scheduled workflow (including this one).
+on:
+  schedule:
+    - cron: '0 2 * * 1' # every Monday at 02:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: keepalive
+  cancel-in-progress: false
+
+jobs:
+  keepalive:
+    name: Prevent cron auto-disable
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      - name: Push an empty commit if the repo has been idle
+        run: |
+          LAST=$(git log -1 --format=%ct)
+          NOW=$(date +%s)
+          DAYS=$(( (NOW - LAST) / 86400 ))
+          echo "Days since last commit: ${DAYS}"
+          # Commit only once the repo nears the 60-day disable threshold, to keep
+          # history noise minimal (~one empty commit every ~50 days when idle).
+          if [ "${DAYS}" -lt 50 ]; then
+            echo "Recent activity detected; nothing to do."
+            exit 0
+          fi
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git commit --allow-empty -m "chore: keepalive to prevent scheduled workflow auto-disable"
+          git push
