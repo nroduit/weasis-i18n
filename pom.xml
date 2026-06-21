@@ -90,11 +90,12 @@
 		<module>weasis-i18n-dist</module>
 	</modules>
 	<build>
+		<finalName>${project.artifactId}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-enforcer-plugin</artifactId>
-				<version>3.6.2</version>
+				<version>3.6.3</version>
 				<executions>
 					<execution>
 						<id>min-requirement</id>
@@ -157,7 +158,7 @@
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>buildnumber-maven-plugin</artifactId>
-					<version>3.2.1</version>
+					<version>3.3.0</version>
 					<executions>
 						<execution>
 							<phase>validate</phase>
@@ -206,7 +207,6 @@
 					<artifactId>maven-jar-plugin</artifactId>
 					<version>3.5.0</version>
 					<configuration>
-						<finalName>${project.artifactId}</finalName>
 						<archive>
 							<manifestEntries>
 								<Bundle-SymbolicName>${bundle.symbolicName}</Bundle-SymbolicName>
