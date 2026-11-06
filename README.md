@@ -16,6 +16,15 @@ themselves live on [Transifex](https://www.transifex.com/weasis/weasis/) and are
 `java-swing-dialogs` Transifex project, under `swing/`). Only Weasis 5 reads it; the launcher of Weasis 4
 embeds its own copy.
 
+## Branches
+
+| Branch | Package | Weasis |
+| --- | --- | --- |
+| `master` | `weasis-i18n-dist-4.0.0-SNAPSHOT` | 4.x |
+| `5.0` | `weasis-i18n-dist-5.0.0-SNAPSHOT` | 5 |
+
+The daily build of `master` builds and publishes both branches.
+
 ## Download
 
 Packages are built automatically once a day and published to the
@@ -24,7 +33,8 @@ Weasis version:
 
 | Package | Compatible Weasis | Status | Download |
 | --- | --- | --- | --- |
-| `weasis-i18n-dist-4.0.0-SNAPSHOT` | 4.1.0 and later | Maintained | [zip](https://github.com/nroduit/mvn-repo/raw/master/org/weasis/weasis-i18n-dist/4.0.0-SNAPSHOT/weasis-i18n-dist-4.0.0-SNAPSHOT.zip) |
+| `weasis-i18n-dist-5.0.0-SNAPSHOT` | 5.0 previews and later (branch `5.0`) | Maintained | [zip](https://github.com/nroduit/mvn-repo/raw/master/org/weasis/weasis-i18n-dist/5.0.0-SNAPSHOT/weasis-i18n-dist-5.0.0-SNAPSHOT.zip) |
+| `weasis-i18n-dist-4.0.0-SNAPSHOT` | 4.1.0 – 4.8.x (branch `master`) | Maintained | [zip](https://github.com/nroduit/mvn-repo/raw/master/org/weasis/weasis-i18n-dist/4.0.0-SNAPSHOT/weasis-i18n-dist-4.0.0-SNAPSHOT.zip) |
 | `weasis-i18n-dist-3.0.0-SNAPSHOT` | 3.7.0 – 4.0.3 | No longer updated | [zip](https://github.com/nroduit/mvn-repo/raw/master/org/weasis/weasis-i18n-dist/3.0.0-SNAPSHOT/weasis-i18n-dist-3.0.0-SNAPSHOT.zip) · [war](https://github.com/nroduit/mvn-repo/raw/master/org/weasis/weasis-i18n-dist/3.0.0-SNAPSHOT/weasis-i18n.war) |
 | `weasis-i18n-dist-2.0.0-SNAPSHOT` | 1.1.x – 3.6.2 | No longer updated | [zip](https://github.com/nroduit/mvn-repo/raw/master/org/weasis/weasis-i18n-dist/2.0.0-SNAPSHOT/weasis-i18n-dist-2.0.0-SNAPSHOT.zip) · [war](https://github.com/nroduit/mvn-repo/raw/master/org/weasis/weasis-i18n-dist/2.0.0-SNAPSHOT/weasis-i18n.war) |
 

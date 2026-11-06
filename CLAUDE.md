@@ -70,4 +70,11 @@ The shared plugin config (transifex download, jar manifest, xz packing) is inher
 
 ## Version note
 The reactor/parent version is `4.0.0`, but `weasis-i18n-dist` publishes as `4.0.0-SNAPSHOT`. This snapshot is the
-one referenced by the README download links and the CI publish path (`org/weasis/weasis-i18n-dist/4.0.0-SNAPSHOT`).
+one referenced by the README download links; the CI publish path is derived from the `weasis-i18n-dist` version.
+
+## Branches
+- `master`: Weasis 4.x, publishes `weasis-i18n-dist-4.0.0-SNAPSHOT` (OSGi fragments).
+- `5.0`: Weasis 5, publishes `weasis-i18n-dist-5.0.0-SNAPSHOT` (plain jars, no OSGi manifest).
+Scheduled workflows only run from the default branch, so `.github/workflows/maven.yml` on `master` builds both
+branches through a matrix (one at a time, both push to `nroduit/mvn-repo`). Keep the workflow identical on both
+branches.

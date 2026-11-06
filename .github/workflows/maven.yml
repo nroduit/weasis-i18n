@@ -12,11 +12,21 @@ permissions:
   contents: read
 jobs:
   build:
-    name: Maven Build
+    name: Maven Build (${{ matrix.branch }})
     runs-on: ubuntu-latest
+    # Scheduled runs only start from the default branch, so this workflow builds every
+    # maintained line: master publishes weasis-i18n-dist-4.0.0-SNAPSHOT (Weasis 4.x),
+    # 5.0 publishes weasis-i18n-dist-5.0.0-SNAPSHOT (Weasis 5). One at a time, because
+    # both push to nroduit/mvn-repo.
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        branch: [master, '5.0']
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          ref: ${{ matrix.branch }}
           path: main
           persist-credentials: false
       - name: Set up JDK
@@ -37,7 +47,10 @@ jobs:
       - name: Commit the maven packages
         run: |
           cd mvn-repo
-          PKGFOLDER="org/weasis/weasis-i18n-dist/4.0.0-SNAPSHOT"
+          # The published version is the one of weasis-i18n-dist on the built branch.
+          VERSION=$(sed -n 's:^\t<version>\(.*\)</version>$:\1:p' "${GITHUB_WORKSPACE}/main/weasis-i18n-dist/pom.xml" | head -1)
+          [ -n "${VERSION}" ] || { echo "Cannot read the version of weasis-i18n-dist"; exit 1; }
+          PKGFOLDER="org/weasis/weasis-i18n-dist/${VERSION}"
           SRC=~/.m2/repository/${PKGFOLDER}
           mkdir -p ${PKGFOLDER}
 
@@ -66,5 +79,5 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add -A
-          git commit -m "update weasis-i18n-dist snapshot" || echo "Nothing to commit"
+          git commit -m "update weasis-i18n-dist ${VERSION}" || echo "Nothing to commit"
           git push
