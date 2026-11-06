@@ -26,6 +26,25 @@
 				<version>3.2.0</version>
 				<executions>
 					<execution>
+						<!-- The translations downloaded by every module are checked before they are packaged:
+						     valid MessageFormat patterns, no lone apostrophe, no printf placeholder (the rules of
+						     TranslationChecks, a copy of the Weasis tests module; the arguments and the character
+						     limits are checked against the English sources in the Weasis build) -->
+						<id>check-translations</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<target>
+								<exec executable="java" failonerror="true" dir="${project.basedir}">
+									<arg value="src/check/TranslationChecks.java" />
+									<arg value="${project.basedir}/.." />
+								</exec>
+							</target>
+						</configuration>
+					</execution>
+					<execution>
 						<id>merge</id>
 						<phase>generate-resources</phase>
 						<goals>
