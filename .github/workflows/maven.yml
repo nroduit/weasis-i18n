@@ -57,11 +57,8 @@ jobs:
 
           # Publish the freshly built snapshot artifacts (pom is required so the
           # metadata generator can detect the artifact and checksum everything).
-          cp -v ${SRC}/weasis-i18n-dist-*.war ${PKGFOLDER}
           cp -v ${SRC}/weasis-i18n-dist-*.zip ${PKGFOLDER}
           cp -v ${SRC}/weasis-i18n-dist-*.pom ${PKGFOLDER}
-          # Stable alias consumed by downstream builds.
-          cp -v ${PKGFOLDER}/weasis-i18n-dist-*.war ${PKGFOLDER}/weasis-i18n.war
           # Regenerate maven-metadata.xml + .sha1/.md5 for the whole repo. This bumps
           # the snapshot's lastUpdated, which is what makes consumers re-download it.
           python3 update-repo.py

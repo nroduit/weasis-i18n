@@ -53,12 +53,13 @@ The two coordinates that define a module are set in its own `pom.xml` properties
 ### Distribution module (`weasis-i18n-dist`)
 Runs last. It concatenates all per-module `src/*.properties` build-number files into `etc/buildNumber.properties`,
 then `maven-assembly-plugin` (descriptor `src/assembly/dist.xml`) collects every reactor module's `*.xz` output
-plus the `etc/` contents into the final `weasis-i18n.zip` / `weasis-i18n.war`.
+plus the `etc/` contents into the final `weasis-i18n.zip` (no war anymore: Weasis 4 and 5 both unpack the zip).
 
 ### Module set
-The active build is the `<modules>` list in the root `pom.xml` (17 `weasis-*-i18n` modules + `weasis-i18n-dist`).
-**`weasis-launcher-i18n`, `docking-frames`, and `java-swing-dialogs` exist on disk but are NOT in the parent
-module list** — they are not built by the default reactor. Add them to `<modules>` if they need to be built.
+The active build is the `<modules>` list in the root `pom.xml` (18 `weasis-*-i18n` modules + `weasis-i18n-dist`).
+`weasis-launcher-i18n` also downloads the Java Swing dialogs (Transifex project `java-swing-dialogs`) into `swing/`;
+only Weasis 5 reads it. **`docking-frames` and `java-swing-dialogs` exist on disk but are NOT in the parent module
+list** — they are not built by the default reactor.
 
 ## Adding a new translation module
 1. Create a `weasis-<name>-i18n/pom.xml` patterned on an existing one (e.g. `weasis-core-i18n/pom.xml`), setting

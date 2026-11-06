@@ -87,6 +87,7 @@
 		<module>weasis-dicom-wave-i18n</module>
 		<module>weasis-acquire-editor-i18n</module>
 		<module>weasis-acquire-explorer-i18n</module>
+		<module>weasis-launcher-i18n</module>
 		<module>weasis-i18n-dist</module>
 	</modules>
 	<build>

@@ -7,9 +7,14 @@
 Translations of the [Weasis DICOM viewer](https://github.com/nroduit/Weasis) into several languages.
 
 This project is maintained separately from Weasis so that translations can be added or updated
-**without recompiling Weasis**. Each language pack is packaged as an OSGi *fragment bundle* that attaches
-to its matching Weasis bundle at runtime. The translation texts themselves live on
-[Transifex](https://www.transifex.com/weasis/weasis/) and are pulled in at build time.
+**without recompiling Weasis**. Each module has its own package, `<module>-i18n.jar.xz`, listed with its
+version qualifier in `buildNumber.properties`. Weasis 4 attaches a package to its matching bundle as an OSGi
+*fragment bundle*; Weasis 5 caches it and adds it to the class loader of the module. The translation texts
+themselves live on [Transifex](https://www.transifex.com/weasis/weasis/) and are pulled in at build time.
+
+`weasis-launcher-i18n` holds the launcher messages and the Java Swing dialogs (from the
+`java-swing-dialogs` Transifex project, under `swing/`). Only Weasis 5 reads it; the launcher of Weasis 4
+embeds its own copy.
 
 ## Download
 
@@ -19,7 +24,7 @@ Weasis version:
 
 | Package | Compatible Weasis | Status | Download |
 | --- | --- | --- | --- |
-| `weasis-i18n-dist-4.0.0-SNAPSHOT` | 4.1.0 and later | Maintained | [zip](https://github.com/nroduit/mvn-repo/raw/master/org/weasis/weasis-i18n-dist/4.0.0-SNAPSHOT/weasis-i18n-dist-4.0.0-SNAPSHOT.zip) · [war](https://github.com/nroduit/mvn-repo/raw/master/org/weasis/weasis-i18n-dist/4.0.0-SNAPSHOT/weasis-i18n.war) |
+| `weasis-i18n-dist-4.0.0-SNAPSHOT` | 4.1.0 and later | Maintained | [zip](https://github.com/nroduit/mvn-repo/raw/master/org/weasis/weasis-i18n-dist/4.0.0-SNAPSHOT/weasis-i18n-dist-4.0.0-SNAPSHOT.zip) |
 | `weasis-i18n-dist-3.0.0-SNAPSHOT` | 3.7.0 – 4.0.3 | No longer updated | [zip](https://github.com/nroduit/mvn-repo/raw/master/org/weasis/weasis-i18n-dist/3.0.0-SNAPSHOT/weasis-i18n-dist-3.0.0-SNAPSHOT.zip) · [war](https://github.com/nroduit/mvn-repo/raw/master/org/weasis/weasis-i18n-dist/3.0.0-SNAPSHOT/weasis-i18n.war) |
 | `weasis-i18n-dist-2.0.0-SNAPSHOT` | 1.1.x – 3.6.2 | No longer updated | [zip](https://github.com/nroduit/mvn-repo/raw/master/org/weasis/weasis-i18n-dist/2.0.0-SNAPSHOT/weasis-i18n-dist-2.0.0-SNAPSHOT.zip) · [war](https://github.com/nroduit/mvn-repo/raw/master/org/weasis/weasis-i18n-dist/2.0.0-SNAPSHOT/weasis-i18n.war) |
 
@@ -45,7 +50,7 @@ Prerequisites:
 mvn -B clean install -Dtransifex.token=<YOUR_TOKEN>
 ```
 
-The distributable `weasis-i18n.zip` and `weasis-i18n.war` are produced under
+The distributable `weasis-i18n.zip` is produced under
 `weasis-i18n-dist/target/dist/`.
 
 To build a single language module (and its parent) instead of the full reactor:

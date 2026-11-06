@@ -9,6 +9,11 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>weasis-launcher-i18n</artifactId>
 	<name>Weasis Launcher (Internationalization)</name>
+	<description>
+		Translations of the launcher (org/weasis/launcher/messages) and of the Java Swing dialogs
+		(swing/basic and swing/synth). Read by the launcher of Weasis 5 before the first window is
+		displayed; ignored by Weasis 4, whose launcher embeds its translations.
+	</description>
 	<properties>
 		<bundle.package>org/weasis/launcher</bundle.package>
 		<frament.host>weasis-launcher;bundle-version="${project.version}"</frament.host>
@@ -16,8 +21,59 @@
 	<build>
 		<plugins>
 			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>buildnumber-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
 				<groupId>org.weasis.maven</groupId>
 				<artifactId>build-transifex-plugin</artifactId>
+				<executions>
+					<execution>
+						<!-- The Swing dialogs of the JRE, from their own Transifex project -->
+						<id>download-swing</id>
+						<goals>
+							<goal>buildLanguagePacks</goal>
+						</goals>
+						<configuration>
+							<baseURL>https://rest.api.transifex.com/</baseURL>
+							<organization>weasis</organization>
+							<project>java-swing-dialogs</project>
+							<outputDirectory>${project.build.directory}/classes/swing</outputDirectory>
+							<baseNames>
+								<baseName>basic</baseName>
+								<baseName>synth</baseName>
+							</baseNames>
+							<modules>
+								<module>basic</module>
+								<module>synth</module>
+							</modules>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>build.number</id>
+						<phase>package</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<target>
+								<propertyfile file="../weasis-i18n-dist/src/buildNumber.properties">
+									<entry key="${project.artifactId}${dollarSign}{output.pkg}" value="r${buildNumber}" />
+								</propertyfile>
+							</target>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.weasis.maven</groupId>
+				<artifactId>build-xz-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
