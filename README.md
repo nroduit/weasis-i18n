@@ -2,19 +2,30 @@
 
 [![License: EPL 2.0](https://img.shields.io/badge/License-EPL%202.0-blue.svg)](https://opensource.org/licenses/EPL-2.0)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![Build](https://github.com/nroduit/weasis-i18n/actions/workflows/maven.yml/badge.svg?branch=master)](https://github.com/nroduit/weasis-i18n/actions/workflows/maven.yml)
+[![Build](https://github.com/nroduit/weasis-i18n/actions/workflows/maven.yml/badge.svg?branch=5.0)](https://github.com/nroduit/weasis-i18n/actions/workflows/maven.yml)
 
 Translations of the [Weasis DICOM viewer](https://github.com/nroduit/Weasis) into several languages.
 
 This project is maintained separately from Weasis so that translations can be added or updated
-**without recompiling Weasis**. Each module has its own package, `<module>-i18n.jar.xz`, listed with its
-version qualifier in `buildNumber.properties`. Weasis 4 attaches a package to its matching bundle as an OSGi
-*fragment bundle*; Weasis 5 caches it and adds it to the class loader of the module. The translation texts
-themselves live on [Transifex](https://www.transifex.com/weasis/weasis/) and are pulled in at build time.
+**without recompiling Weasis**. This branch, `5.0`, builds the translations of Weasis 5; the translations of
+Weasis 4.x are built from `master`.
+
+Each module has its own package, `<module>-i18n.jar.xz`: a plain jar of `messages_<code>.properties`, listed
+with its version qualifier in `buildNumber.properties`. Weasis 5 caches the packages and publishes them through
+the class loader shared by the plugins. The translation texts themselves live on
+[Transifex](https://www.transifex.com/weasis/weasis/) and are pulled in at build time.
 
 `weasis-launcher-i18n` holds the launcher messages and the Java Swing dialogs (from the
-`java-swing-dialogs` Transifex project, under `swing/`). Only Weasis 5 reads it; the launcher of Weasis 4
-embeds its own copy.
+`java-swing-dialogs` Transifex project, under `swing/`), read by the launcher before its first window.
+
+## Branches
+
+| Branch | Package | Weasis |
+| --- | --- | --- |
+| `master` | `weasis-i18n-dist-4.0.0-SNAPSHOT` | 4.x |
+| `5.0` | `weasis-i18n-dist-5.0.0-SNAPSHOT` | 5 |
+
+The daily build of `master` builds and publishes both branches.
 
 ## Download
 
@@ -24,7 +35,8 @@ Weasis version:
 
 | Package | Compatible Weasis | Status | Download |
 | --- | --- | --- | --- |
-| `weasis-i18n-dist-4.0.0-SNAPSHOT` | 4.1.0 and later | Maintained | [zip](https://github.com/nroduit/mvn-repo/raw/master/org/weasis/weasis-i18n-dist/4.0.0-SNAPSHOT/weasis-i18n-dist-4.0.0-SNAPSHOT.zip) |
+| `weasis-i18n-dist-5.0.0-SNAPSHOT` | 5.0 previews and later (branch `5.0`) | Maintained | [zip](https://github.com/nroduit/mvn-repo/raw/master/org/weasis/weasis-i18n-dist/5.0.0-SNAPSHOT/weasis-i18n-dist-5.0.0-SNAPSHOT.zip) |
+| `weasis-i18n-dist-4.0.0-SNAPSHOT` | 4.1.0 – 4.8.x (branch `master`) | Maintained | [zip](https://github.com/nroduit/mvn-repo/raw/master/org/weasis/weasis-i18n-dist/4.0.0-SNAPSHOT/weasis-i18n-dist-4.0.0-SNAPSHOT.zip) |
 | `weasis-i18n-dist-3.0.0-SNAPSHOT` | 3.7.0 – 4.0.3 | No longer updated | [zip](https://github.com/nroduit/mvn-repo/raw/master/org/weasis/weasis-i18n-dist/3.0.0-SNAPSHOT/weasis-i18n-dist-3.0.0-SNAPSHOT.zip) · [war](https://github.com/nroduit/mvn-repo/raw/master/org/weasis/weasis-i18n-dist/3.0.0-SNAPSHOT/weasis-i18n.war) |
 | `weasis-i18n-dist-2.0.0-SNAPSHOT` | 1.1.x – 3.6.2 | No longer updated | [zip](https://github.com/nroduit/mvn-repo/raw/master/org/weasis/weasis-i18n-dist/2.0.0-SNAPSHOT/weasis-i18n-dist-2.0.0-SNAPSHOT.zip) · [war](https://github.com/nroduit/mvn-repo/raw/master/org/weasis/weasis-i18n-dist/2.0.0-SNAPSHOT/weasis-i18n.war) |
 

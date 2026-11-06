@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.weasis</groupId>
 	<artifactId>weasis-i18n</artifactId>
-	<version>4.0.0</version>
+	<version>5.0.0</version>
 	<packaging>pom</packaging>
 	<name>Weasis Internationalization</name>
 
@@ -17,7 +17,6 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<dollarSign>$</dollarSign>
-		<bundle.symbolicName>${project.artifactId}</bundle.symbolicName>
 		<build-transifex-plugin.version>1.4.0</build-transifex-plugin.version>
 	</properties>
 
@@ -207,21 +206,6 @@
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-jar-plugin</artifactId>
 					<version>3.5.1</version>
-					<configuration>
-						<archive>
-							<manifestEntries>
-								<Bundle-SymbolicName>${bundle.symbolicName}</Bundle-SymbolicName>
-								<Bundle-ClassPath>.</Bundle-ClassPath>
-								<Bundle-RequiredExecutionEnvironment>JavaSE-1.8</Bundle-RequiredExecutionEnvironment>
-								<Bundle-Name>${project.name}</Bundle-Name>
-								<Bundle-ManifestVersion>2</Bundle-ManifestVersion>
-								<!-- Set bundle version (OSGI format), from Weasis 2.0.0 accept translation 
-									fragments -->
-								<Bundle-Version>${project.version}.r${buildNumber}</Bundle-Version>
-								<Fragment-Host>${frament.host}</Fragment-Host>
-							</manifestEntries>
-						</archive>
-					</configuration>
 				</plugin>
 				<plugin>
 					<groupId>org.weasis.maven</groupId>

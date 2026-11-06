@@ -4,7 +4,7 @@
 	<parent>
 		<artifactId>weasis-i18n</artifactId>
 		<groupId>org.weasis</groupId>
-		<version>4.0.0</version>
+		<version>5.0.0</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.weasis.dicom</groupId>
@@ -12,7 +12,6 @@
 	<name>DICOM Audio (Internationalization)</name>
 	<properties>
 		<bundle.package>org/weasis/dicom/au</bundle.package>
-		<frament.host>weasis-dicom-au;bundle-version="${project.version}"</frament.host>
 	</properties>
 
 	<build>

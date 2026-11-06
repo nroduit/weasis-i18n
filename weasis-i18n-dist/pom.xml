@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.weasis</groupId>
 	<artifactId>weasis-i18n-dist</artifactId>
-	<version>4.0.0-SNAPSHOT</version>
+	<version>5.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Weasis-i18n Distribution</name>
 
