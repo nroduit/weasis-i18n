@@ -15,10 +15,14 @@ with its version qualifier in `buildNumber.properties`. Weasis 5 caches the pack
 the class loader shared by the plugins. The translation texts themselves live on
 [Transifex](https://www.transifex.com/weasis/weasis/) and are pulled in at build time.
 
-Before packaging, `weasis-i18n-dist` runs `src/check/TranslationChecks.java` on every downloaded
-`messages_<lang>.properties`: an invalid `MessageFormat` pattern, a lone apostrophe in one or a
-`printf` placeholder fails the build (the file is a copy of the Weasis `tests` module, which also checks
-the arguments and the `# max:N` limits against the English sources).
+Before packaging, each module runs `weasis-i18n-dist/src/check/TranslationChecks.java --drop` on its
+downloaded `messages_<lang>.properties`: a translation with an invalid `MessageFormat` pattern, a lone
+apostrophe in one or a `printf` placeholder is removed, so Weasis shows the English text for that key
+instead of a broken one. Until the `weasis-5` Transifex project exists, the translations follow the 4.x
+sources (`%s` where 5.0 has `{0}`), so this removes about 1 800 translations; the build lists them.
+`weasis-i18n-dist` then checks the whole package with the same rules and fails on any finding (the file is
+a copy of the Weasis `tests` module, which also checks the arguments and the `# max:N` limits against the
+English sources).
 
 `weasis-launcher-i18n` holds the launcher messages and the Java Swing dialogs (from the
 `java-swing-dialogs` Transifex project, under `swing/`), read by the launcher before its first window.

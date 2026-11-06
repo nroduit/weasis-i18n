@@ -147,6 +147,35 @@
 		<pluginManagement>
 			<plugins>
 				<plugin>
+					<!-- Every module that declares antrun removes, before its jar is built, the downloaded
+					     translations that break a rule of TranslationChecks (printf placeholder, invalid
+					     MessageFormat pattern, lone apostrophe): Weasis then shows English for these keys
+					     instead of a broken string. The translations of the weasis Transifex project still
+					     follow the 4.x sources (%s where 5.0 has {0}). The root pom has no classes folder,
+					     the program skips it. -->
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-antrun-plugin</artifactId>
+					<version>3.2.0</version>
+					<executions>
+						<execution>
+							<id>drop-invalid-translations</id>
+							<phase>prepare-package</phase>
+							<goals>
+								<goal>run</goal>
+							</goals>
+							<configuration>
+								<target>
+									<exec executable="java" failonerror="true">
+										<arg value="${maven.multiModuleProjectDirectory}/weasis-i18n-dist/src/check/TranslationChecks.java" />
+										<arg value="--drop" />
+										<arg value="${project.build.directory}/classes" />
+									</exec>
+								</target>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
 					<artifactId>maven-assembly-plugin</artifactId>
 					<version>3.8.0</version>
 					<configuration>

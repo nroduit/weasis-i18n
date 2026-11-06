@@ -10,8 +10,11 @@
 // Single-file copy of tests/src/test/java/org/weasis/tests/i18n/TranslationChecks.java and
 // MessageSource.java of the Weasis repository (branch 5.0), kept in step by hand. The unnamed package
 // lets "java src/check/TranslationChecks.java <dir>..." run it on any JDK of the build (11 or later).
+// Specific to weasis-i18n: the ISO-8859-1 fallback of MessageSource.read and the --drop mode.
 
 import java.io.IOException;
+import java.nio.charset.CharacterCodingException;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -34,6 +37,13 @@ import java.util.stream.Stream;
  * the Weasis build (on the sources) and in the weasis-i18n build (on the downloaded translations):
  * {@code java TranslationChecks.java <dir>...} checks every {@code messages*.properties} found
  * under the directories and exits with 1 on a finding.
+ *
+ * <p>{@code java TranslationChecks.java --drop <dir>...} removes instead, from every translation
+ * found under the directories, the keys that break a rule checkable without the English source
+ * (pattern, apostrophe, {@code printf}), so that Weasis falls back to English for them rather than
+ * showing a broken string; it lists what it removed and exits with 0. The weasis-i18n modules run it
+ * before packaging, because the translations of the {@code weasis} Transifex project still follow
+ * the 4.x sources ({@code %s} where 5.0 has {@code {0}}).
  *
  * <ul>
  *   <li>a value with a {@code {} is a valid {@link MessageFormat} pattern, and a lone apostrophe
@@ -145,6 +155,9 @@ public final class TranslationChecks {
   public static List<Finding> checkDirectories(List<Path> dirs) throws IOException {
     List<Finding> findings = new ArrayList<>();
     for (Path dir : dirs) {
+      if (!Files.isDirectory(dir)) {
+        continue;
+      }
       Set<Path> folders = new HashSet<>();
       try (Stream<Path> files = Files.walk(dir)) {
         files
@@ -178,7 +191,50 @@ public final class TranslationChecks {
     return findings;
   }
 
+  /**
+   * Removes from every translation under the directories the keys with a finding of {@link
+   * #checkSource}, rewriting the file in its own encoding.
+   *
+   * @return the findings whose keys were removed
+   */
+  public static List<Finding> dropInvalid(List<Path> dirs) throws IOException {
+    List<Finding> dropped = new ArrayList<>();
+    for (Path dir : dirs) {
+      if (!Files.isDirectory(dir)) {
+        continue;
+      }
+      List<Path> translations;
+      try (Stream<Path> files = Files.walk(dir)) {
+        translations =
+            files
+                .filter(p -> TRANSLATION.matcher(p.getFileName().toString()).matches())
+                .sorted()
+                .toList();
+      }
+      for (Path t : translations) {
+        List<Finding> findings = checkSource(MessageSource.read(t));
+        if (findings.isEmpty()) {
+          continue;
+        }
+        Set<String> keys = new HashSet<>();
+        findings.forEach(f -> keys.add(f.key()));
+        Charset charset = MessageSource.charsetOf(t);
+        Files.write(t, MessageSource.without(Files.readAllLines(t, charset), keys), charset);
+        dropped.addAll(findings);
+      }
+    }
+    return dropped;
+  }
+
   public static void main(String[] args) throws IOException {
+    if (args.length > 0 && "--drop".equals(args[0])) {
+      List<Path> dirs = Stream.of(args).skip(1).map(Path::of).toList();
+      List<Finding> dropped = dropInvalid(dirs);
+      dropped.forEach(
+          f -> System.out.println("dropped " + f.file() + " " + f.key() + ": " + f.message()));
+      System.out.println(dropped.size() + " translation(s) dropped, English shown instead");
+      return;
+    }
     List<Path> dirs =
         args.length == 0 ? List.of(Path.of(".")) : Stream.of(args).map(Path::of).toList();
     List<Finding> findings = checkDirectories(dirs);
@@ -226,8 +282,49 @@ public final class TranslationChecks {
       this.entries = entries;
     }
 
+    /**
+     * Reads the file as {@link java.util.PropertyResourceBundle} does: UTF-8, or ISO-8859-1 when the
+     * file is not valid UTF-8 (Transifex delivers Java properties in ISO-8859-1 with {@code \\uXXXX}
+     * escapes).
+     */
     public static MessageSource read(Path path) throws IOException {
-      return parse(path, Files.readAllLines(path, StandardCharsets.UTF_8));
+      return parse(path, Files.readAllLines(path, charsetOf(path)));
+    }
+
+    /** UTF-8 when the file decodes as UTF-8, ISO-8859-1 otherwise. */
+    static Charset charsetOf(Path path) throws IOException {
+      try {
+        Files.readAllLines(path, StandardCharsets.UTF_8);
+        return StandardCharsets.UTF_8;
+      } catch (CharacterCodingException e) {
+        return StandardCharsets.ISO_8859_1;
+      }
+    }
+
+    /** The lines of a properties file without the entries of the keys, continuation lines included. */
+    static List<String> without(List<String> lines, Set<String> keys) {
+      List<String> out = new ArrayList<>(lines.size());
+      for (int i = 0; i < lines.size(); i++) {
+        String line = lines.get(i);
+        String trimmed = line.strip();
+        if (trimmed.isEmpty() || trimmed.startsWith("#") || trimmed.startsWith("!")) {
+          out.add(line);
+          continue;
+        }
+        int end = i;
+        while (lines.get(end).endsWith("\\") && end + 1 < lines.size()) {
+          end++;
+        }
+        Matcher m = KEY.matcher(trimmed);
+        boolean drop = m.matches() && keys.contains(m.group(1));
+        for (int j = i; j <= end; j++) {
+          if (!drop) {
+            out.add(lines.get(j));
+          }
+        }
+        i = end;
+      }
+      return out;
     }
 
     /**

@@ -26,10 +26,12 @@
 				<version>3.2.0</version>
 				<executions>
 					<execution>
-						<!-- The translations downloaded by every module are checked before they are packaged:
-						     valid MessageFormat patterns, no lone apostrophe, no printf placeholder (the rules of
-						     TranslationChecks, a copy of the Weasis tests module; the arguments and the character
-						     limits are checked against the English sources in the Weasis build) -->
+						<!-- The packaged translations are checked once more: valid MessageFormat patterns, no lone
+						     apostrophe, no printf placeholder (the rules of TranslationChecks, a copy of the Weasis
+						     tests module; the arguments and the character limits are checked against the English
+						     sources in the Weasis build). Each module has already dropped the translations that
+						     break these rules (execution drop-invalid-translations of the parent), so a finding
+						     here means that step did not run. -->
 						<id>check-translations</id>
 						<phase>prepare-package</phase>
 						<goals>
