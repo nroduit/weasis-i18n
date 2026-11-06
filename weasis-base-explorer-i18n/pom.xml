@@ -9,7 +9,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.weasis.base</groupId>
 	<artifactId>weasis-base-explorer-i18n</artifactId>
-	<name>Weasis Base UI (Internationalization)</name>
+	<name>Weasis Base Explorer (Internationalization)</name>
 	<properties>
 		<bundle.package>org/weasis/base/explorer</bundle.package>
 	</properties>

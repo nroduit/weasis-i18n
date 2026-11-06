@@ -13,13 +13,17 @@ Weasis 4.x are built from `master`.
 Each module has its own package, `<module>-i18n.jar.xz`: a plain jar of `messages_<code>.properties`, listed
 with its version qualifier in `buildNumber.properties`. Weasis 5 caches the packages and publishes them through
 the class loader shared by the plugins. The translation texts themselves live on
-[Transifex](https://www.transifex.com/weasis/weasis/) and are pulled in at build time.
+[Transifex](https://www.transifex.com/weasis/weasis/) and are pulled in at build time by
+`build-transifex-plugin` 2.x: only the translated strings (mode `onlytranslated`, so Weasis shows its own
+English for the others), written in UTF-8. The Transifex project is the `transifex.project` property of the
+root `pom.xml`: `weasis` (the 4.x sources) until the `weasis-5` project exists.
 
 Before packaging, each module runs `weasis-i18n-dist/src/check/TranslationChecks.java --drop` on its
 downloaded `messages_<lang>.properties`: a translation with an invalid `MessageFormat` pattern, a lone
 apostrophe in one or a `printf` placeholder is removed, so Weasis shows the English text for that key
 instead of a broken one. Until the `weasis-5` Transifex project exists, the translations follow the 4.x
-sources (`%s` where 5.0 has `{0}`), so this removes about 1 800 translations; the build lists them.
+sources (`%s` where 5.0 has `{0}`), so this removes the translated strings that kept a `printf`
+placeholder; the build lists them.
 `weasis-i18n-dist` then checks the whole package with the same rules and fails on any finding (the file is
 a copy of the Weasis `tests` module, which also checks the arguments and the `# max:N` limits against the
 English sources).
@@ -62,7 +66,7 @@ picked up automatically by the next scheduled build.
 
 Prerequisites:
 
-- JDK 21
+- JDK 25 (branch `5.0`; `master` builds with JDK 21)
 - Maven 3.6.3 or later
 - A [Transifex](https://www.transifex.com/signin) API token (the build downloads the translation files)
 

@@ -9,15 +9,18 @@
 	<name>Weasis Internationalization</name>
 
 	<properties>
-		<java-version>21</java-version>
-		<jdk-version>21</jdk-version>
+		<java-version>25</java-version>
+		<jdk-version>25</jdk-version>
 		<enforcer.jdk-version>[${jdk-version},)</enforcer.jdk-version>
 		<enforcer.maven-version>[3.6.3,)</enforcer.maven-version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<dollarSign>$</dollarSign>
-		<build-transifex-plugin.version>1.4.0</build-transifex-plugin.version>
+		<build-transifex-plugin.version>2.0.0</build-transifex-plugin.version>
+		<!-- The Transifex project of the sources: weasis (the 4.x sources) until the weasis-5
+		     project exists, then weasis-5. -->
+		<transifex.project>weasis</transifex.project>
 	</properties>
 
 	<licenses>
@@ -84,6 +87,7 @@
 		<module>weasis-dicom-viewer2d-i18n</module>
 		<module>weasis-dicom-viewer3d-i18n</module>
 		<module>weasis-dicom-wave-i18n</module>
+		<module>weasis-dicom-wsi-i18n</module>
 		<module>weasis-acquire-editor-i18n</module>
 		<module>weasis-acquire-explorer-i18n</module>
 		<module>weasis-launcher-i18n</module>
@@ -222,7 +226,11 @@
 							<configuration>
 								<baseURL>https://rest.api.transifex.com/</baseURL>
 								<organization>weasis</organization>
-								<project>weasis</project>
+								<project>${transifex.project}</project>
+								<!-- Only the translated strings: Weasis shows its own English for the others,
+								     not the older English of the Transifex source. Written in UTF-8. -->
+								<mode>onlytranslated</mode>
+								<outputEncoding>UTF-8</outputEncoding>
 								<outputDirectory>${project.build.directory}/classes/${bundle.package}</outputDirectory>
 								<modules>
 									<module>${project.artifactId}</module>

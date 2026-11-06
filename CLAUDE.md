@@ -16,7 +16,7 @@ There are no tests and no lint step — the "source" is fetched at build time fr
 
 ## Build
 
-Prerequisites: JDK 21 and Maven 3.6.3+ (enforced by `maven-enforcer-plugin`). A Transifex API token is required
+Prerequisites: JDK 25 (this branch; `master` uses 21) and Maven 3.6.3+ (enforced by `maven-enforcer-plugin`). A Transifex API token is required
 to actually fetch translations.
 
 ```bash
@@ -37,14 +37,21 @@ CI (`.github/workflows/maven.yml`) runs this daily, then copies the artifacts in
 
 ### Per-module pipeline
 Each `weasis-*-i18n` module mirrors one Weasis bundle and runs the same chain during `package`:
-1. **`build-transifex-plugin`** (`buildLanguagePacks` goal) downloads the language `.properties` files for that
-   module into `target/classes/${bundle.package}` (e.g. `org/weasis/core`).
-2. **`maven-jar-plugin`** packages them as a plain JAR (no OSGi manifest: Weasis 5 publishes the packages
+1. **`build-transifex-plugin`** 2.x (`buildLanguagePacks` goal) downloads the language `.properties` files for
+   that module into `target/classes/${bundle.package}` (e.g. `org/weasis/core`): mode `onlytranslated` (no
+   English fill for the untranslated strings), UTF-8, empty languages not written, a failed language fails
+   the build. The project is the root property `transifex.project` (`weasis` until `weasis-5` exists);
+   `-Dtransifex.skip=true` builds without a token (empty packages).
+2. **`TranslationChecks --drop`** (execution `drop-invalid-translations`, `prepare-package`) removes the
+   translations that break a rule (`printf` placeholder, invalid pattern, lone apostrophe).
+3. **`maven-jar-plugin`** packages them as a plain JAR (no OSGi manifest: Weasis 5 publishes the packages
    through the class loader shared by its plugins).
-3. **`build-xz-plugin`** (`packFiles` goal) compresses the JAR to `.jar.xz`.
+4. **`build-xz-plugin`** (`packFiles` goal) compresses the JAR to `.jar.xz`.
 
 The coordinate that defines a module is set in its own `pom.xml` properties:
 - `bundle.package` — the resource path the translations land in (matches the Weasis module's package).
+- `transifex.skipMissingResources` — `true` for a module whose Transifex resource does not exist yet
+  (`weasis-dicom-wsi-i18n`): the module is packaged empty instead of failing the build.
 
 ### Build number propagation
 `buildnumber-maven-plugin` generates a timestamp build number. Each module appends a line
